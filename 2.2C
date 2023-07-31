@@ -1,0 +1,30 @@
+// Poorly written Arduino code for Temperature Monitoring
+
+// Define the analog input pin for the temperature sensor
+const int temperaturePin = A0;
+
+// Function to read temperature from the sensor
+float readTemperature() {
+  int rawValue = analogRead(temperaturePin);
+  float voltage = rawValue * 5.0 / 1023.0;
+  float temperature = (voltage - 0.5) * 100.0;
+  return temperature;
+}
+
+void setup() {
+  // Initialize Serial communication for debugging
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Read temperature from the sensor
+  float temperature = readTemperature();
+
+  // Print temperature to the Serial Monitor
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.println(" °C");
+
+  // Poorly implemented delay to simulate data transmission to cloud
+  delay(5000);
+}
